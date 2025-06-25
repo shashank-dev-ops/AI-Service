@@ -1,17 +1,28 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  creationTimestamp: null
+  name: keyword-detector-deployment
   labels:
-    run: hellopy
-  name: hellopy
+    app: keyword-detector
 spec:
-  containers:
-  - image: shivamrana28/hellopy:0.1
-    name: hellopy
-    ports:
-      - containerPort: 30001
-    resources: {}
-  dnsPolicy: ClusterFirst
-  restartPolicy: Always
-status: {}
+  replicas: 2
+  selector:
+    matchLabels:
+      app: keyword-detector
+  template:
+    metadata:
+      labels:
+        app: keyword-detector
+    spec:
+      containers:
+      - name: keyword-detector-container
+        image: shashankdeep1998/aiapp:latest
+        ports:
+        - containerPort: 8000 
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"

@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app.py .
 
 # Expose port 5000 from the container.
-EXPOSE 5000
+EXPOSE 8000
 
 # Define the command to run the application using Gunicorn.
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
