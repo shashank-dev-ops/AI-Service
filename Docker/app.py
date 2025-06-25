@@ -112,5 +112,5 @@ def sentiment_analysis():
 if __name__ == '__main__':
     # When running locally (outside Docker for testing), use debug mode.
     logging.info("Starting Flask application in development mode...")
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=8000, debug=True)
 
