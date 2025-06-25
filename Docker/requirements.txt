@@ -1,1 +1,3 @@
-Flask
+Flask==2.3.3
+gunicorn==21.2.0 # Gunicorn is a production-ready WSGI HTTP Server for Unix.
+                 # It's better than Flask's built-in server for production.

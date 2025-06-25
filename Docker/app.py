@@ -1,13 +1,21 @@
-import flask, flask.views
-from flask import views
+# app.py
+from flask import Flask
 
-app = flask.Flask(__name__)
+# Create a Flask web application instance
+app = Flask(__name__)
 
-class View(flask.views.MethodView):
-    def get(self):
-        return "Hello from Python!"
+# Define a route for the root URL ('/')
+@app.route('/')
+def hello_world():
+    """
+    This function handles requests to the root URL.
+    It returns a simple greeting message.
+    """
+    return 'Hello from Docker!'
 
-app.add_url_rule('/', view_func=View.as_view('main'))
+# This block ensures the application runs only when the script is executed directly
+# It starts the Flask development server on all available network interfaces (0.0.0.0)
+# and on port 5000.
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
 
-app.debug = True
-app.run(port=30001)
