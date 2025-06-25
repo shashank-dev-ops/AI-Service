@@ -1,4 +1,1 @@
 Flask
-transformers
-torch
-gunicorn

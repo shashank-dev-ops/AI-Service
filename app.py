@@ -1,21 +1,13 @@
-from flask import Flask, request, jsonify
-from transformers import pipeline
+import flask, flask.views
+from flask import views
 
-app = Flask(__name__)
-sentiment_pipeline = pipeline("sentiment-analysis")
+app = flask.Flask(__name__)
 
-@app.route('/predict', methods=['POST'])
-def predict_sentiment():
-    data = request.json
-    if not data or 'text' not in data:
-        return jsonify({"error": "Please provide 'text' in the request body"}), 400
-    text = data['text']
-    result = sentiment_pipeline(text)
-    return jsonify(result)
+class View(flask.views.MethodView):
+    def get(self):
+        return "Hello from Python!"
 
-@app.route('/')
-def health_check():
-    return "AI App is running!"
+app.add_url_rule('/', view_func=View.as_view('main'))
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+app.debug = True
+app.run(port=30001)
